@@ -1,5 +1,4 @@
 import shortid from 'shortid';
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter, deleteContact, addcontact } from './redux/contactsSlice';
 import { ContactForm } from './components/ContactForm/ContactForm';
@@ -8,17 +7,10 @@ import { Filter } from './components/Filter/Filter';
 import { Container } from './components/Container/Container';
 
 const App = () => {
-  // const [contacts, setContacts] = useState(
-  //   () => JSON.parse(localStorage.getItem('contacts')) ?? [],
-  // );
   const contacts = useSelector(state => state.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const formSubmitHandler = ({ name, number }) => {
     const contact = {
